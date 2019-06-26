@@ -82,13 +82,7 @@ class VisitController extends Controller
      */
     public function destroy(Visit $visit)
     {
-        Session::flash('message', 'اطلاعات این ویزیت با موفقیت حذف شد');
-        Session::flash('alert-class', 'alert-success');
 
-        $visit->delete();
-
-//        Visit::where('patientID',$visit->id)->delete();
-        return back();
     }
 
     /**

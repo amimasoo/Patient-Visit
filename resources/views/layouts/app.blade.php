@@ -10,7 +10,11 @@
     <title>سامانه تعیین ویزیت بیمار</title>
 
     <!-- Scripts -->
-    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+{{--    <script src="{{asset('js/')}}"></script>--}}
+
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,16 +29,16 @@
     {{--Fontawesome--}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    {{--js--}}
-    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>--}}
-    <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+
+    <style>body {
+            font-family: BYekan, 'BYekan', tahoma;
+        }</style>
+    <link href='http://www.fontonline.ir/css/BYekan.css' rel='stylesheet' type='text/css'>
 
 </head>
-<body>
+<body class="fixed-sn light-blue-skin" style="padding-left: 0">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+       {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -84,16 +88,156 @@
                 </div>
             </div>
         </nav>
+--}}
+    <header>
 
-        <main class="py-4">
+        {{--<a href="#" data-activates="slide-out" class="btn btn-primary p-3 button-collapse"><i class="fas fa-bars"></i></a>--}}
+        <!-- Sidebar navigation -->
+        <div id="slide-out" class="side-nav sn-bg-4 mdb-sidenav fixed">
+
+            <ul class="custom-scrollbar">
+                <!-- Logo -->
+                <li>
+                    <div class="logo-wrapper ">
+                        <a href="{{ url('/home') }}"><img src="{{asset('images/big-logo.png')}}"
+                                                          class=" flex-center"></a>
+                    </div>
+                </li>
+                <!--/. Logo -->
+                <!--Social-->
+                <!--/Social-->
+                <!-- Side navigation links -->
+                <li style="margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.65);">
+                    <ul class="collapsible collapsible-accordion">
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-book-open"></i>
+                                درس
+                                ها
+                                <i class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{{ url('/course/add') }}"
+                                           class="waves-effect">{{ __(' اضافه کردن درس جدید ') }}</a>
+                                    </li>
+                                    <li><a href="{{ url('/course/list') }}" class="waves-effect">مشاهده‌ی لیست درس ‌ها</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-graduate"></i>
+                                دانشجو ها<i class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{{ url('/forums/add') }}" class="waves-effect">اضافه کردن انجمن ها</a>
+                                    </li>
+                                    <li><a href="{{ url('/student/list') }}" class="waves-effect">مشاهده‌ی لیست دانشجو ‌ها</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cog"></i>
+                                تنظیمات<i class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{{ url('/forums/add') }}" class="waves-effect">اضافه کردن انجمن ها</a>
+                                    </li>
+                                    <li><a href="{{ url('/admin/setting') }}" class="waves-effect">تغییر سال و ترم جاری</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!--/. Side navigation links -->
+            </ul>
+            <div class="sidenav-bg mask-strong"></div>
+        </div>
+        <!--/. Sidebar navigation -->
+
+        <!-- Navbar -->
+
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav"
+             style="padding-left: 0">
+
+            <!-- Breadcrumb-->
+            <ul class="nav navbar-nav nav-flex-icons ml-3">
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link"> <span class="clearfix d-none d-sm-inline-block">تماس با ما</span><i--}}
+                                {{--class="fas fa-envelope"></i></a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link"> <span class="clearfix d-none d-sm-inline-block">پشتیبانی</span><i--}}
+                                {{--class="far fa-comments"></i></a>--}}
+                {{--</li>--}}
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}"> <span
+                                    class="clearfix d-none d-sm-inline-block">{{ __('ورود') }}</span><i
+                                    class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                    {{--<li class="nav-item">--}}
+                        {{--<a class="nav-link" href="{{ route('register') }}"> <span--}}
+                                    {{--class="clearfix d-none d-sm-inline-block">{{ __('ثبت نام') }}</span><i--}}
+                                    {{--class="fas fa-user-plus"></i></a>--}}
+                    {{--</li>--}}
+                @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+
+                            {{--<a class="dropdown-item" href="#">--}}
+                                {{--مشاهده ی حساب کاربری--}}
+                            {{--</a>--}}
+
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('خروج') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                @csrf
+                            </form>
+
+
+                        </div>
+                    </li>
+                @endguest
+            </ul>
+
+            <div class="breadcrumb-dn ml-auto">
+                <a href="{{url('/home')}}" class="app-name">سامانه ی  تعیین ویزیت بیمار
+                </a>
+            </div>
+            <!-- SideNav slide-out button -->
+            <div class="float-right">
+                <a href="#" data-activates="slide-out" class="button-collapse p-3"><i class="fas fa-bars"></i></a>
+            </div>
+        </nav>
+        <!-- /.Navbar -->
+        <!-- SideNav slide-out button -->
+            {{--<a href="#" data-activates="slide-out" class="btn btn-primary p-3 button-collapse"><i class="fas fa-bars"></i></a>--}}
+
+    </header>
+
+        <main class="py-4 pt-5 mx-lg-5 margin-top-100">
             @yield('content')
         </main>
     </div>
 </body>
-
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/popper.min.js')}}"></script>
 <script src="{{asset('js/mdb.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
+<script>
+
+    $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+    });
+
+</script>
 
 </html>

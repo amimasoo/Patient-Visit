@@ -12,14 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/visit/add','PatientController@index');
+
+Route::get('/visit/add','PatientController@add');
 Route::post('/visit/add','PatientController@store');
-Route::get('/visits','PatientController@visitListView');
-Route::get('/visit/delete/{visit}','VisitController@destroy');
+Route::get('/patients','PatientController@index');
+Route::get('/delete/{patient}','PatientController@destroy');
+Route::get('/edit/{patient}','PatientController@edit');
+Route::post('/edit/{patient}','PatientController@update');
+Route::get('/searchpatient','PatientController@searchPatient');
+Route::post('/searchpatient','PatientController@isPatient');
+Route::get('/existpatient','PatientController@isPatient');

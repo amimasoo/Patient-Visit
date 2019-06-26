@@ -17,56 +17,38 @@
                 <th>نام خانوادگی</th>
                 <th>شماره تلفن</th>
                 <th>کد ملی</th>
-                <th>تاریخ ویزیت</th>
+                {{--<th>تاریخ ویزیت</th>--}}
                 <th>قد</th>
                 <th>وزن</th>
                 <th>BMI</th>
-                <th>مشاهده</th>
                 <th>ویرایش</th>
                 <th>حذف</th>
             </tr>
             </thead>
             <tbody id="myTable">
 
-            @foreach($visits as $visit)
+            @foreach($patients as $patient)
                 <tr>
-
                     <td>{{++$loop->index}}</td>
-{{--                    <td>{{$visit->id}}</td>--}}
-                    <td>{{$visit->patients['firstName']}}</td>
-                    <td>{{$visit->patients['lastName']}}</td>
-                    <td>{{$visit->patients['phoneNumber']}}</td>
-                    <td>{{$visit->patients['nationalNumber']}}</td>
-                    <td>{{$visit['date']}}</td>
-                    <td>{{$visit->patients['height']}}</td>
-                    <td>{{$visit->patients['weight']}}</td>
-                    @php
-                       // $height = $visit->patients['height'];
-                       //$weight = $visit->patients['weight'];
-                       //$weight2 = $weight * $weight;
-                       // return $weight2;
-                        //$BMI= $height / $weight2;
-                    @endphp
-                    <td>{{$visit->patients['BMI']}}</td>
-
+                    <td>{{$patient['firstName']}}</td>
+                    <td>{{$patient['lastName']}}</td>
+                    <td>{{$patient['phoneNumber']}}</td>
+                    <td>{{$patient['nationalNumber']}}</td>
+                    {{--<td>{{$visit['date']}}</td>--}}
+                    <td>{{$patient['height']}}</td>
+                    <td>{{$patient['weight']}}</td>
+                    <td>{{$patient['BMI']}}</td>
 
                     <td>
                             <span style="font-size: 23px; color: black;">
-                              <a href="students/{{$visit->id}}" style="color: black ;">
-                                <i class="far fa-address-card"></i>
-                              </a>
-                             </span>
-                    </td>
-                    <td>
-                            <span style="font-size: 23px; color: black;">
-                               <a href="edit/{{$visit->id}}" style="color: black ;">
+                               <a href="edit/{{$patient['id']}}" style="color: black ;">
                                   <i class="far fa-edit"></i>
                                </a>
                              </span>
                     </td>
                     <td>
                             <span style="font-size: 23px; color: black;">
-                                <a href="" class="deleteVisit" data-visitid="{{$visit->id}}" id="deleteID" data-target="#myModal" data-toggle="modal" style="color: black ;">
+                                <a href="" class="deleteVisit" data-visitid="{{$patient['id']}}" id="deleteID" data-target="#myModal" data-toggle="modal" style="color: black ;">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                              </span>
@@ -78,14 +60,14 @@
         </table>
 
         <div class="row" style="font-size: 30px; float: right; padding-right: 10px;">
-            <a class="btn col text-white" href="/visit/add" style="background-color: #3f5c80;">
+            <a class="btn col text-white primary-color" href="/visit/add" >
                 افزودن ویزیت جدید
             </a>
         </div>
     </div>
 
     <br><br><br>
-    <div class="pagination justify-content-center">{{ $visits->links() }}</div>
+    <div class="pagination justify-content-center">{{ $patients->links() }}</div>
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
@@ -105,7 +87,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    {{--<button href="delete/{{$course->id}}" type="button" class="btn btn-success btn-link" data-dismiss="modal">بله</button>--}}
+                    {{--<button href="delete/{{$patient['id']}}" type="button" class="btn btn-success btn-link" data-dismiss="modal">بله</button>--}}
                     <a id="modalDeleteButton" class="btn waves-effect btn-block btn-success text-white">بله</a><br>
                     <button type="button" class="btn btn-block btn-danger waves-effect" data-dismiss="modal">خیر</button>
                 </div>

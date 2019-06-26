@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged innnn!
+
+                        <a href="/patients" class="btn-success btn">لیست بیمارها</a>
+                    
                 </div>
             </div>
         </div>
