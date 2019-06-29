@@ -22,8 +22,7 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patient::paginate(5);
-//        $patients = Patient::all();
-//        return $patients;
+
         return view('reportsTable.reportsTable', compact('patients'));
 
     }
@@ -100,7 +99,6 @@ class PatientController extends Controller
     public function edit(Patient $patient)
     {
         $patient = Patient::where('id', $patient->id)->with('visits')->first();
-//        return $patient;
         return view('patientVisitForm.edit',compact('patient'));
     }
 
@@ -112,12 +110,8 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Patient $patient){
-//        $visit = Visit::all();
-//        $visit = Patient::where('id', $patient->id)->with('visits')->first();
-//        return $patient->visit;
-//        return $request;
+
         $patient->update($request->all());
-//        $visit->update($request->all());
 
         Session::flash('message', '.اطلاعات ویزیت '.$patient->firstName.' '.$patient->lastName.' با موفقیت ویرایش شد');
         Session::flash('alert-class', 'alert-success');
@@ -143,8 +137,7 @@ class PatientController extends Controller
 
     public function visitListView(){
 
-//        $visits = Visit::with('patients')->paginate(10);
-//        return view('reportsTable.reportsTable',compact('visits'));
+
     }
 
     public function add()
@@ -159,7 +152,7 @@ class PatientController extends Controller
     public function isPatient(Request $request){
 
         $existing_patient = Patient::where('nationalNumber', $request['nationalNumber'])->first();
-//        return $existing_patient->firstName;
+
         if($existing_patient == null){
 
             Session::flash('message', '.این کد ملی در سیستم وجود ندارد.اطلاعات کامل بیمار را وارد کنید');
@@ -169,20 +162,16 @@ class PatientController extends Controller
             return view('patientVisitForm.add');
         }
         elseif($existing_patient != null) {
-//            return "vojood darad";
-//
+
             Session::flash('message', '.بیمار '.$existing_patient->firstName.' '.$existing_patient->lastName.' قبلا در سیستم ویزیت داشته است. لطفا فقط تاریخ ویزیت جدید را انتخاب کنید');
             Session::flash('alert-class', 'alert-success');
-//            return redirect('/existpatient');
-//            return $existing_patient;
+
             return view('patientVisitForm.existPatient',compact('existing_patient'));
         }
     }
 
     public function highBMI()
     {
-//        $BMI = Patient::where()->get();
-//        return $BMI;
         $patients = Patient::where('BMI', '>', 29)->get();
         return view('reportsTable.highBMI',compact('patients'));
     }

@@ -11,7 +11,7 @@
                         @if(Session::has('message'))
                             <p class="text-right alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                         @endif
-                        <form method="post" action="">
+                        <form method="post" action="/visit/add">
                             @csrf
 
                             <div class="form-group row">
