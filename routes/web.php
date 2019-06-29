@@ -28,4 +28,5 @@ Route::get('/edit/{patient}','PatientController@edit');
 Route::post('/edit/{patient}','PatientController@update');
 Route::get('/searchpatient','PatientController@searchPatient');
 Route::post('/searchpatient','PatientController@isPatient');
+Route::post('/searchpatient/addvisit/{visit}','VisitController@store');
 Route::get('/existpatient','PatientController@isPatient');

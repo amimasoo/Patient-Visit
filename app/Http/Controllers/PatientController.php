@@ -18,8 +18,9 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patient::paginate(5);
-//        return $patients;
-        return view('reportsTable.reportsTable',compact('patients'));
+//        $patients = Patient::all();
+        return view('reportsTable.reportsTable', compact('patients'));
+
     }
 
     /**
@@ -38,6 +39,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $existing_patient = Patient::where('nationalNumber', $request['nationalNumber'])->first();
@@ -150,7 +152,7 @@ class PatientController extends Controller
     public function isPatient(Request $request){
 
         $existing_patient = Patient::where('nationalNumber', $request['nationalNumber'])->first();
-//        return $existing_patient;
+//        return $existing_patient->firstName;
         if($existing_patient == null){
 
             Session::flash('message', '.این کد ملی در سیستم وجود ندارد.اطلاعات کامل بیمار را وارد کنید');
@@ -159,10 +161,20 @@ class PatientController extends Controller
 //            return redirect('/visit/add');
             return view('patientVisitForm.add');
         }
-        else {
+        elseif($existing_patient != null) {
 //            return "vojood darad";
-//        return redirect('/existpatient');
-            return view('checkPatient.existPatient');
+//
+            Session::flash('message', '.بیمار '.$existing_patient->firstName.' '.$existing_patient->lastName.' قبلا در سیستم ویزیت داشته است. لطفا فقط تاریخ ویزیت جدید را انتخاب کنید');
+            Session::flash('alert-class', 'alert-success');
+//            return redirect('/existpatient');
+//            return $existing_patient;
+            return view('patientVisitForm.existPatient',compact('existing_patient'));
         }
+    }
+
+    public function higheBMI()
+    {
+        $BMI = Patient::where()->get();
+        return $BMI;
     }
 }

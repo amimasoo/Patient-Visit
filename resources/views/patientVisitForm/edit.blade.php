@@ -129,8 +129,12 @@
                                     @csrf
                                     @foreach($patient->visits as $visit)
                                     <div class="form-group row">
-                                        <button type="submit" class="btn btn-sm bg-primary text-white" name="clickbtn" value="Display Result" style="float: left;display: inline-block">
-                                            <i class="fas fa-check"></i>                                        </button>
+                                        {{--<button type="submit" class="btn btn-sm bg-primary text-white" name="clickbtn" value="Display Result" style="float: left;display: inline-block">--}}
+                                            {{--<i class="fas fa-check"></i>--}}
+                                        {{--</button>--}}
+                                        <a href="{{$visit->id}}" class="btn btn-sm btn-primary">
+                                            <i href="" class="fas fa-check"></i>
+                                        </a>
                                         <div class="col-md-6">
                                             {{--<input style="text-align: right; display: inline-block" id="nationalNumber" type="number" class="form-control{{ $errors->has('nationalNumber') ? ' is-invalid' : '' }}" name="nationalNumber" required autofocus>--}}
                                         <input style="text-align: right" id="date" type="date" class="form-control{{$errors->has('date') ? ' is-invalid' : ''}}" name="date" value="{{$visit->date}}" required>
@@ -140,7 +144,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <label for="nationalNumber" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right; margin-left: 45px">{{ __('جستجو بر اساس شماره ملی') }}</label>
+                                        <label for="nationalNumber" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right; margin-left: 45px">{{ __('تاریخ ویزیت') }}</label>
                                     </div>
                                     @endforeach
                                 </form>

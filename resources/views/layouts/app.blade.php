@@ -99,8 +99,9 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper ">
-                        <a href="{{ url('/home') }}"><img src="{{asset('images/big-logo.png')}}"
-                                                          class=" flex-center"></a>
+                        <a href="{{ url('/home') }}">
+                            <img src="{{asset('images/big-logo.png')}}"class=" flex-center">
+                        </a>
                     </div>
                 </li>
                 <!--/. Logo -->
@@ -110,31 +111,35 @@
                 <li style="margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.65);">
                     <ul class="collapsible collapsible-accordion">
                         <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-book-open"></i>
-                                درس
+                                ویزیت
                                 ها
                                 <i class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="{{ url('/course/add') }}"
-                                           class="waves-effect">{{ __(' اضافه کردن درس جدید ') }}</a>
+                                    <li><a href="{{ url('/visit/add') }}"
+                                           class="waves-effect">{{ __(' اضافه کردن ویزیت جدید ') }}</a>
                                     </li>
-                                    <li><a href="{{ url('/course/list') }}" class="waves-effect">مشاهده‌ی لیست درس ‌ها</a>
-                                    </li>
+                                    {{--<li><a href="{{ url('/course/list') }}" class="waves-effect">مشاهده‌ی لیست درس ‌ها</a>--}}
+                                    {{--</li>--}}
                                 </ul>
                             </div>
                         </li>
                         <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-graduate"></i>
-                                دانشجو ها<i class="fas fa-angle-down rotate-icon"></i></a>
+                                بیمار ها<i class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="{{ url('/forums/add') }}" class="waves-effect">اضافه کردن انجمن ها</a>
+                                    {{--<li><a href="{{ url('/forums/add') }}" class="waves-effect">اضافه کردن انجمن ها</a>--}}
+                                    {{--</li>--}}
+                                    <li><a href="{{ url('/patients') }}" class="waves-effect">مشاهده‌ی لیست بیمار ‌ها</a>
                                     </li>
-                                    <li><a href="{{ url('/student/list') }}" class="waves-effect">مشاهده‌ی لیست دانشجو ‌ها</a>
+                                    <li style="direction: rtl"><a href="{{ url('/patients') }}" class="waves-effect"> BMI بالای 29</a>
+                                    </li>
+                                    <li style="direction: rtl"><a href="{{ url('/patients') }}" class="waves-effect">BMI زیر 20</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cog"></i>
+                        {{--<li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cog"></i>
                                 تنظیمات<i class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
@@ -144,7 +149,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>--}}
                     </ul>
                 </li>
                 <!--/. Side navigation links -->
@@ -170,9 +175,10 @@
                 {{--</li>--}}
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}"> <span
-                                    class="clearfix d-none d-sm-inline-block">{{ __('ورود') }}</span><i
-                                    class="fas fa-sign-in-alt"></i></a>
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <span class="clearfix d-none d-sm-inline-block">{{ __('ورود') }}</span>
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
                     </li>
                     {{--<li class="nav-item">--}}
                         {{--<a class="nav-link" href="{{ route('register') }}"> <span--}}
@@ -180,7 +186,7 @@
                                     {{--class="fas fa-user-plus"></i></a>--}}
                     {{--</li>--}}
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown"  style="margin-left: 100px">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}

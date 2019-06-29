@@ -9,7 +9,6 @@
                     <div class="card-body">
                         <form method="post" action="">
                             @csrf
-
                             <div class="form-group row">
                                 <button type="submit" class="btn btn-sm bg-primary text-white" name="clickbtn" value="Display Result" style="float: left;display: inline-block">
                                     <i class="fas fa-search"></i>

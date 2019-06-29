@@ -37,7 +37,7 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -71,7 +71,9 @@ class VisitController extends Controller
      */
     public function update(Request $request, Visit $visit)
     {
-        //
+//        $visit->update($request->all());
+//
+//        return back();
     }
 
     /**

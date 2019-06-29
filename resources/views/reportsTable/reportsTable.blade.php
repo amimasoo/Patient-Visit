@@ -111,6 +111,7 @@
             var visitIDhref = "delete/"+ visit;
             $('#modalDeleteButton').attr("href", visitIDhref);
         });
+
     </script>
 
     @endsection

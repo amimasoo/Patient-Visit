@@ -119,7 +119,7 @@
                                         {{ __('ثبت ویزیت برای بیمار') }}
                                     </button>
                                 </div>
-                                <a class="btn btn-block col-md-3 text-white" href="/patients" style="background-color: #4285f4; padding: 10px; margin-left: 30px">لیست ویزیت ها</a>
+                                <a class="btn btn-block col-md-3 text-white" href="/patients" style="background-color: #4285f4; padding: 10px; margin-left: 30px">لیست بیمارها</a>
                             </div>
                         </form>
                         @if($errors->any())
