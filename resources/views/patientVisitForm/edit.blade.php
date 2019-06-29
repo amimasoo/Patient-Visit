@@ -122,57 +122,38 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card" style="box-shadow: 5px 10px 35px #3e3e3e;">
                             <div class="card-header bg-primary text-white" style="float: right;text-align: right">{{ __('ویرایش تاریخ ویزیت بیمار') }}</div>
                             <div class="card-body">
-                                <form method="post" action="">
+                                @if(Session::has('message'))
+                                    <p class="text-right alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                                @endif
+                                @foreach($patient->visits as $visit)
+                                <form method="post" action="visit/{{$visit->id}}">
                                     @csrf
-                                    @foreach($patient->visits as $visit)
                                     <div class="form-group row">
-                                        {{--<button type="submit" class="btn btn-sm bg-primary text-white" name="clickbtn" value="Display Result" style="float: left;display: inline-block">--}}
-                                            {{--<i class="fas fa-check"></i>--}}
-                                        {{--</button>--}}
-                                        <a href="{{$visit->id}}" class="btn btn-sm btn-primary">
-                                            <i href="" class="fas fa-check"></i>
-                                        </a>
+
+                                        <button type="submit" class="btn btn-sm " style="background-color:#4285f4;">
+                                            <i  class="fas fa-check"></i>
+                                        </button>
                                         <div class="col-md-6">
-                                            {{--<input style="text-align: right; display: inline-block" id="nationalNumber" type="number" class="form-control{{ $errors->has('nationalNumber') ? ' is-invalid' : '' }}" name="nationalNumber" required autofocus>--}}
                                         <input style="text-align: right" id="date" type="date" class="form-control{{$errors->has('date') ? ' is-invalid' : ''}}" name="date" value="{{$visit->date}}" required>
-                                            @if ($errors->has('nationalNumber'))
+                                            @if ($errors->has('date'))
                                                 <span class="invalid-feedback" role="alert">
-                                                     <strong>{{ $errors->first('nationalNumber') }}</strong>
+                                                     <strong>{{ $errors->first('date') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                        <label for="nationalNumber" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right; margin-left: 45px">{{ __('تاریخ ویزیت') }}</label>
+                                        <label for="date" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right; margin-left: 45px">{{ __('تاریخ ویزیت') }}</label>
                                     </div>
-                                    @endforeach
+
                                 </form>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
-                {{--<div class="card-body">
-                    @if(Session::has('message'))
-                        <p class="text-right alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-                    @endif
-                    <form method="post" action="">
-                        @csrf
 
-                            <div class="form-group row">
-                                <div class="col-md-4">
-                                    <input style="text-align: right" id="date" type="date" class="form-control{{$errors->has('date') ? ' is-invalid' : ''}}" name="date" value="{{$visit->date}}" required>
-                                </div>
-                                <label for="date" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right" >{{ __('تاریخ ویزیت را انتخاب کنید') }}</label>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="btn bg-primary text-white" name="clickbtn" value="Display Result">
-                                    {{ __('ویرایش') }}
-                                </button>
-                            </div>
-
-                    </form>
-                </div>--}}
             </div>
         </div>
     </div>

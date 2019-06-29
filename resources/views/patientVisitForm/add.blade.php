@@ -122,9 +122,9 @@
                                 <a class="btn btn-block col-md-3 text-white" href="/patients" style="background-color: #4285f4; padding: 10px; margin-left: 30px">لیست بیمارها</a>
                             </div>
                         </form>
-                        @if($errors->any())
-                            {{ implode('', $errors->all('<div>:message</div>')) }}
-                        @endif
+                        {{--@if($errors->any())--}}
+                            {{--{{ implode('', $errors->all('<div>:message</div>')) }}--}}
+                        {{--@endif--}}
                     </div>
                 </div>
             </div>

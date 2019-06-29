@@ -2,11 +2,11 @@
 @section('content')
 
     <div class="container">
-
+        <h2 class="text-right" style="direction: rtl">بیمار های با BMI زیر 20</h2>
         <input id="myInput" class="form-control container" type="text" placeholder=" جستجو کنید ..." style="direction: rtl">
         <br>
 
-    @if(Session::has('message'))
+        @if(Session::has('message'))
             <p class="text-right alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
         @endif
         <table class="table table-striped table-responsive-xl table-bordered text-center " style="box-shadow: 5px 10px 35px #3e3e3e; text-align: right; direction: rtl">
@@ -41,7 +41,7 @@
 
                     <td>
                             <span style="font-size: 23px; color: black;">
-                               <a href="edit/{{$patient['id']}}" style="color: black ;">
+                               <a href="http://127.0.0.1:8000/edit/{{$patient['id']}}" style="color: black ;">
                                   <i class="far fa-edit"></i>
                                </a>
                              </span>
@@ -60,7 +60,7 @@
         </table>
 
         <div class="row" style="font-size: 30px; float: right; padding-right: 10px;">
-            <a class="btn col text-white primary-color" href="/searchpatient" >
+            <a class="btn col text-white primary-color" href="/visit/add" >
                 افزودن ویزیت جدید
             </a>
         </div>
@@ -72,7 +72,7 @@
     </div>
 
     <br><br><br>
-    <div class="pagination justify-content-center">{{ $patients->links() }}</div>
+    {{--<div class="pagination justify-content-center">{{ $patients->links() }}</div>--}}
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
@@ -119,4 +119,4 @@
 
     </script>
 
-    @endsection
+@endsection

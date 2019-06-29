@@ -71,9 +71,12 @@ class VisitController extends Controller
      */
     public function update(Request $request, Visit $visit)
     {
-//        $visit->update($request->all());
-//
-//        return back();
+//        return $request;
+        $visit->update($request->all());
+
+        Session::flash('message', '.اطلاعات ویزیت با موفقیت ویرایش شد');
+        Session::flash('alert-class', 'alert-success');
+        return back();
     }
 
     /**

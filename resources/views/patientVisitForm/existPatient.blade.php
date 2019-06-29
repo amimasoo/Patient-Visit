@@ -10,15 +10,15 @@
                         @if(Session::has('message'))
                             <p class="text-right alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                         @endif
-                        <form method="get" action="">
+                        <form method="post" action="searchpatient/addvisit/{{$existing_patient->id}}">
                              @csrf
                             <div class="form-group row">
-                                {{--<button type="submit" class="btn btn-sm bg-primary text-white" name="clickbtn" value="Display Result" style="float: left;display: inline-block">--}}
-                                    {{--<i href="visit/add?id={{$existing_patient->id}}" class="fas fa-check"></i>--}}
-                                {{--</button>--}}
-                                <a href="searchpatient/addvisit/{{$existing_patient->id}}" class="btn btn-sm btn-primary">
-                                    <i href="" class="fas fa-check"></i>
-                                </a>
+                                <button type="submit" class="btn btn-sm bg-primary text-white" name="clickbtn" value="Display Result" style="float: left;display: inline-block">
+                                    <i href="visit/add?id={{$existing_patient->id}}" class="fas fa-check"></i>
+                                </button>
+                                {{--<a href="searchpatient/addvisit/{{$existing_patient->id}}" class="btn btn-sm btn-primary">--}}
+                                    {{--<i href="" class="fas fa-check"></i>--}}
+                                {{--</a>--}}
                                 <div class="col-md-5">
                                     {{--<input style="text-align: right; display: inline-block" id="nationalNumber" type="number" class="form-control{{ $errors->has('nationalNumber') ? ' is-invalid' : '' }}" name="nationalNumber" required autofocus>--}}
                                     <input style="text-align: right" id="date" type="date" class="form-control{{$errors->has('date') ? ' is-invalid' : ''}}" name="date" required>
@@ -27,122 +27,17 @@
                                             <strong>{{ $errors->first('date') }}</strong>
                                         </span>
                                     @endif
+                                    <input value="{{$existing_patient->firstName}}" style="text-align: right" id="firstName" type="hidden" class="form-control{{$errors->has('firstName') ? ' is-invalid' : ''}}" name="firstName" required>
+                                    <input value="{{$existing_patient->lastName}}" style="text-align: right" id="lastName" type="hidden" class="form-control{{$errors->has('lastName') ? ' is-invalid' : ''}}" name="lastName" required>
+                                    <input value="{{$existing_patient->nationalNumber}}" style="text-align: right" id="nationalNumber" type="hidden" class="form-control{{$errors->has('nationalNumber') ? ' is-invalid' : ''}}" name="nationalNumber" required>
+                                    <input value="{{$existing_patient->phoneNumber}}" style="text-align: right" id="phoneNumber" type="hidden" class="form-control{{$errors->has('phoneNumber') ? ' is-invalid' : ''}}" name="phoneNumber" required>
+                                    <input value="{{$existing_patient->height}}" style="text-align: right" id="height" type="hidden" class="form-control{{$errors->has('height') ? ' is-invalid' : ''}}" name="height" required>
+                                    <input value="{{$existing_patient->weight}}" style="text-align: right" id="weight" type="hidden" class="form-control{{$errors->has('weight') ? ' is-invalid' : ''}}" name="weight" required>
+                                    <input value="{{$existing_patient->BMI}}" style="text-align: right" id="BMI" type="hidden" class="form-control{{$errors->has('BMI') ? ' is-invalid' : ''}}" name="BMI" required>
                                 </div>
                                 <label for="date" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right; margin-left: 100px">{{ __('تاریخ ویزیت جدید را انتخاب کنید') }}</label>
                             </div>
                         </form>
-
-                            {{--<form method="post" action="">
-                                @csrf
-
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <input style="text-align: right" id="firstName" type="text" class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName"  required autofocus>
-
-                                        @if ($errors->has('firstName'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('firstName') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    <label for="firstName" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right">{{ __('نام') }}</label>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <input style="text-align: right" id="lastName" type="text" class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" required autofocus>
-
-                                        @if ($errors->has('lastName'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('lastName') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    <label for="lastName" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right">{{ __('نام خانوادگی') }}</label>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <input style="text-align: right" id="nationalNumber" type="number" class="form-control{{ $errors->has('nationalNumber') ? ' is-invalid' : '' }}" name="nationalNumber" value="{{ old('nationalNumber') }}" required autofocus>
-
-                                        @if ($errors->has('nationalNumber'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('nationalNumber') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    <label for="nationalNumber" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right">{{ __('شماره ملی') }}</label>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-
-                                        <input style="text-align: right" id="phoneNumber" type="number" class="form-control{{ $errors->has('phoneNumber') ? ' is-invalid' : '' }}" name="phoneNumber" value="{{ old('phoneNumber') }}" required autofocus>
-
-                                        @if ($errors->has('phoneNumber'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('phoneNumber') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    <label for="phoneNumber" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right">{{ __('شماره تلفن همراه') }}</label>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <input style="text-align: right" id="height" type="number" class="form-control{{ $errors->has('height') ? ' is-invalid' : '' }}" name="height" value="{{ old('height') }}" required autofocus>
-
-                                        @if ($errors->has('height'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('height') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    <label for="height" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right; direction: rtl;">{{ __('قد (به سانتی متر)') }}</label>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <input style="text-align: right" id="weight" type="number" class="form-control{{ $errors->has('weight') ? ' is-invalid' : '' }}" name="weight" value="{{ old('weight') }}" required>
-
-                                        @if ($errors->has('weight'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('weight') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    <label for="weight" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right">{{ __('وزن') }}</label>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <input style="text-align: right" id="BMI" type="hidden" class="form-control{{ $errors->has('BMI') ? ' is-invalid' : '' }}" name="BMI" value="{{ old('BMI') }}" required>
-
-                                        @if ($errors->has('BMI'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('BMI') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    --}}{{--<label for="BMI" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right;direction: rtl">{{ __('محاسبه BMI ') }}</label>--}}{{--
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-8">
-                                        <input style="text-align: right" id="date" type="date" class="form-control{{$errors->has('date') ? ' is-invalid' : ''}}" name="date" value="{{old('date')}}" required>
-                                    </div>
-                                    <label for="date" class="col-md-4 col-form-label text-md-right" style="float: right;text-align: right" >{{ __('تاریخ ویزیت را انتخاب کنید') }}</label>
-                                </div>
-
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-8">
-                                        <button type="submit" onclick="add_number()" class="btn btn-block bg-primary text-white" name="clickbtn" value="Display Result">
-                                            {{ __('ثبت ویزیت برای بیمار') }}
-                                        </button>
-                                    </div>
-                                    <a class="btn btn-block col-md-3 text-white" href="/patients" style="background-color: #4285f4; padding: 10px; margin-left: 30px">لیست بیمارها</a>
-                                </div>
-                            </form>--}}
-
                     </div>
                 </div>
             </div>

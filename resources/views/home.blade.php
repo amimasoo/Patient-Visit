@@ -14,10 +14,13 @@
                         </div>
                     @endif
 
-                    خوش آمدید
+                    <p>خوش آمدید</p>
 
-                    <a class="btn btn-block btn-primary">اضافه کردن ویزیت</a>
-                    <a class="btn btn-block btn-warning">لیست بیماران</a>
+                    <a class="btn btn-block col-4 btn-info" href="searchpatient">اضافه کردن ویزیت</a>
+                    <a class="btn btn-block col-4 btn-success" href="patients">لیست بیماران</a>
+                    <br><br>
+                    <a class="btn btn-block col-4 btn-danger" href="patients/highBMI" style="direction: rtl">BMI بالا</a>
+                    <a class="btn btn-block col-4 btn-indigo" href="patients/lowBMI" style="direction: rtl">BMI پایین</a>
 
                 </div>
             </div>

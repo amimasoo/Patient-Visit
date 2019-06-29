@@ -6,6 +6,10 @@ use App\Patient;
 use App\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+//use Excel;
+use Maatwebsite\Excel\Excel;
+
+//use Maatwebsite\Excel\Facades\Excel;
 
 
 class PatientController extends Controller
@@ -19,6 +23,7 @@ class PatientController extends Controller
     {
         $patients = Patient::paginate(5);
 //        $patients = Patient::all();
+//        return $patients;
         return view('reportsTable.reportsTable', compact('patients'));
 
     }
@@ -106,11 +111,13 @@ class PatientController extends Controller
      * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
-    {
+    public function update(Request $request, Patient $patient){
 //        $visit = Visit::all();
-        
+//        $visit = Patient::where('id', $patient->id)->with('visits')->first();
+//        return $patient->visit;
+//        return $request;
         $patient->update($request->all());
+//        $visit->update($request->all());
 
         Session::flash('message', '.اطلاعات ویزیت '.$patient->firstName.' '.$patient->lastName.' با موفقیت ویرایش شد');
         Session::flash('alert-class', 'alert-success');
@@ -172,9 +179,39 @@ class PatientController extends Controller
         }
     }
 
-    public function higheBMI()
+    public function highBMI()
     {
-        $BMI = Patient::where()->get();
-        return $BMI;
+//        $BMI = Patient::where()->get();
+//        return $BMI;
+        $patients = Patient::where('BMI', '>', 29)->get();
+        return view('reportsTable.highBMI',compact('patients'));
+    }
+
+    public function lowBMI(){
+        $patients = Patient::where('BMI','<',20)->get();
+        return view('reportsTable.lowBMI',compact('patients'));
+    }
+
+    public function excel(){
+        $patient_data=Patient::all();
+        $patient_array[]=array('firstName','lastName','nationalNumber','phoneNumber','height','weight','BMI');
+//        return $patient_array;
+        foreach ($patient_data as $patient){
+            $patient_array=array(
+                'firstName'          => $patient->firstName,
+                'lastName' => $patient->lastName,
+                'nationalNumber'    => $patient->nationalNumber,
+                'phoneNumber'   => $patient->phoneNumber,
+                'heigh'           => $patient->height,
+                'weight'          => $patient->weight,
+                'BMI'          => $patient->BMI,
+            );
+        }
+        Excel::create('patient Data',function ($excel) use($patient_array){
+            $excel->setTitle('patient Data');
+            $excel->sheet('patient Data',function ($sheet)use($patient_array){
+                $sheet->fromArray($patient_array,null,'A1',false,false);
+            });
+        })->download('xlsx');
     }
 }

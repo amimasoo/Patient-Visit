@@ -116,7 +116,7 @@
                                 <i class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="{{ url('/visit/add') }}"
+                                    <li><a href="{{ url('/searchpatient') }}"
                                            class="waves-effect">{{ __(' اضافه کردن ویزیت جدید ') }}</a>
                                     </li>
                                     {{--<li><a href="{{ url('/course/list') }}" class="waves-effect">مشاهده‌ی لیست درس ‌ها</a>--}}
@@ -132,9 +132,9 @@
                                     {{--</li>--}}
                                     <li><a href="{{ url('/patients') }}" class="waves-effect">مشاهده‌ی لیست بیمار ‌ها</a>
                                     </li>
-                                    <li style="direction: rtl"><a href="{{ url('/patients') }}" class="waves-effect"> BMI بالای 29</a>
+                                    <li style="direction: rtl"><a href="{{ url('/patients/highBMI') }}" class="waves-effect"> BMI بالای 29</a>
                                     </li>
-                                    <li style="direction: rtl"><a href="{{ url('/patients') }}" class="waves-effect">BMI زیر 20</a>
+                                    <li style="direction: rtl"><a href="{{ url('/patients/lowBMI') }}" class="waves-effect">BMI زیر 20</a>
                                     </li>
                                 </ul>
                             </div>
