@@ -7,9 +7,9 @@ use App\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 //use Excel;
-use Maatwebsite\Excel\Excel;
+//use Maatwebsite\Excel\Excel;
 
-//use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class PatientController extends Controller
@@ -21,7 +21,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::paginate(5);
+        $patients = Patient::latest()->paginate(5);
 
         return view('reportsTable.reportsTable', compact('patients'));
 
@@ -63,8 +63,10 @@ class PatientController extends Controller
                 'date' => $request['date'],
                 'patientID' => $patient->id
             ]);
+
             Session::flash('message', '.تاریخ ویزیت '.$patient->firstName.' '.$patient->lastName.' با موفقیت ثبت شد');
             Session::flash('alert-class', 'alert-success');
+            return back();
         } else {
 
             Visit::create([
@@ -74,7 +76,6 @@ class PatientController extends Controller
             Session::flash('message', '.تاریخ ویزیت '.$existing_patient->firstName.' '.$existing_patient->lastName.' با موفقیت ثبت شد');
             Session::flash('alert-class', 'alert-success');
         }
-
 
         return back();
     }
@@ -176,6 +177,14 @@ class PatientController extends Controller
         return view('reportsTable.highBMI',compact('patients'));
     }
 
+    public function normalBMI(){
+        $first='20';
+        $end='29';
+        $patients = Patient::whereBetween('BMI',[$first,$end]);
+//        $patients->where('BMI','>',29);
+//        return $patients->get();
+        return view('reportsTable.normalBMI',compact('patients'));
+    }
     public function lowBMI(){
         $patients = Patient::where('BMI','<',20)->get();
         return view('reportsTable.lowBMI',compact('patients'));
@@ -183,7 +192,7 @@ class PatientController extends Controller
 
     public function excel(){
         $patient_data=Patient::all();
-        $patient_array[]=array('firstName','lastName','nationalNumber','phoneNumber','height','weight','BMI');
+        $patient_array=array('firstName','lastName','nationalNumber','phoneNumber','height','weight','BMI');
 //        return $patient_array;
         foreach ($patient_data as $patient){
             $patient_array=array(
@@ -191,7 +200,7 @@ class PatientController extends Controller
                 'lastName' => $patient->lastName,
                 'nationalNumber'    => $patient->nationalNumber,
                 'phoneNumber'   => $patient->phoneNumber,
-                'heigh'           => $patient->height,
+                'height'           => $patient->height,
                 'weight'          => $patient->weight,
                 'BMI'          => $patient->BMI,
             );

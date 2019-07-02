@@ -136,6 +136,8 @@
                                     </li>
                                     <li style="direction: rtl"><a href="{{ url('/patients/lowBMI') }}" class="waves-effect">BMI زیر 20</a>
                                     </li>
+                                    <li style="direction: rtl"><a href="{{ url('/patients/normalBMI') }}" class="waves-effect">BMI نرمال</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -215,7 +217,7 @@
             </ul>
 
             <div class="breadcrumb-dn ml-auto">
-                <a href="{{url('/home')}}" class="app-name">سامانه ی  تعیین ویزیت بیمار
+                <a href="{{url('/home')}}" class="app-name">سامانه  تعیین ویزیت بیمار
                 </a>
             </div>
             <!-- SideNav slide-out button -->

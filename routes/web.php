@@ -26,6 +26,7 @@ Route::get('/patients','PatientController@index');
 
 Route::get('/patients/highBMI','PatientController@highBMI');
 Route::get('/patients/lowBMI','PatientController@lowBMI');
+Route::get('/patients/normalBMI','PatientController@normalBMI');
 
 Route::get('/patient/excel','PatientController@excel');
 

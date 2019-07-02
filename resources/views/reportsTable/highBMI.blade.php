@@ -60,7 +60,7 @@
         </table>
 
         <div class="row" style="font-size: 30px; float: right; padding-right: 10px;">
-            <a class="btn col text-white primary-color" href="/visit/add" >
+            <a class="btn col text-white primary-color" href="/searchpatient" >
                 افزودن ویزیت جدید
             </a>
         </div>

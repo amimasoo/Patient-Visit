@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="container">
-        <h2 class="text-right" style="direction: rtl">بیمار های با BMI زیر 20</h2>
+        <h2 class="text-right" style="direction: rtl">بیمار های با BMI نرمال</h2>
         <input id="myInput" class="form-control container" type="text" placeholder=" جستجو کنید ..." style="direction: rtl">
         <br>
 
@@ -60,7 +60,7 @@
         </table>
 
         <div class="row" style="font-size: 30px; float: right; padding-right: 10px;">
-            <a class="btn col text-white primary-color" href="/searchpatient" >
+            <a class="btn col text-white primary-color" href="/visit/add" >
                 افزودن ویزیت جدید
             </a>
         </div>
